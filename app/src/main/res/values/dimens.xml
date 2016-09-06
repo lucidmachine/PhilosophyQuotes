@@ -3,9 +3,12 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <!-- Widget -->
     <dimen name="widget_height">80dp</dimen>
-    <dimen name="quote_horizontal_margin">4dp</dimen>
+
+    <!-- Quote layout -->
+    <dimen name="quote_horizontal_margin">2dp</dimen>
     <dimen name="quote_horizontal_padding">2dp</dimen>
     <dimen name="quote_vertical_margin">2dp</dimen>
-    <dimen name="quote_vertical_padding">2dp</dimen>
+    <dimen name="quote_vertical_padding">4dp</dimen>
 </resources>
