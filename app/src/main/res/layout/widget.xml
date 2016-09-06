@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:baselineAligned="false"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="@dimen/widget_height">
@@ -11,26 +12,37 @@
         android:layout_weight=".8"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/quote_text"
+        <TextView android:id="@+id/quote_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".75"
+
             android:layout_marginLeft="@dimen/quote_horizontal_margin"
+            android:paddingLeft="@dimen/quote_horizontal_padding"
             android:layout_marginRight="@dimen/quote_horizontal_margin"
+            android:paddingRight="@dimen/quote_horizontal_padding"
             android:layout_marginTop="@dimen/quote_vertical_margin"
+            android:paddingTop="@dimen/quote_vertical_padding"
             android:layout_marginBottom="@dimen/quote_vertical_margin"
+            android:paddingBottom="@dimen/quote_vertical_padding"
+
             android:text="@string/lipsum"/>
 
-        <TextView
-            android:id="@+id/quote_author"
+        <TextView android:id="@+id/quote_author"
+
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".25"
+
             android:layout_marginLeft="@dimen/quote_horizontal_margin"
+            android:paddingLeft="@dimen/quote_horizontal_padding"
             android:layout_marginRight="@dimen/quote_horizontal_margin"
+            android:paddingRight="@dimen/quote_horizontal_padding"
             android:layout_marginTop="@dimen/quote_vertical_margin"
+            android:paddingTop="@dimen/quote_vertical_padding"
             android:layout_marginBottom="@dimen/quote_vertical_margin"
+            android:paddingBottom="@dimen/quote_vertical_padding"
+
             android:gravity="end"
             android:text="@string/author_name"/>
     </LinearLayout>
