@@ -12,8 +12,8 @@
     tools:context="com.lucidmachinery.philosophyquotes.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/listView" />
 </RelativeLayout>
