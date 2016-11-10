@@ -5,15 +5,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ArrayList<String> quoteTexts = new ArrayList<>();
+        quoteTexts.add("foo");
+        quoteTexts.add("bar");
+        quoteTexts.add("baz");
+        ArrayAdapter<String> quotesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, quoteTexts);
+
+        ListView listView = (ListView)findViewById(R.id.listView);
+        listView.setAdapter(quotesAdapter);
     }
 
     @Override
