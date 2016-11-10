@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris id.</string>
     <string name="author_name">Guy Fierri</string>
+    <string name="share">Share</string>
+    <string name="source">Go To Source</string>
 </resources>
