@@ -21,11 +21,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ArrayList<String> quoteTexts = new ArrayList<>();
-        quoteTexts.add("foo");
-        quoteTexts.add("bar");
-        quoteTexts.add("baz");
-        ArrayAdapter<String> quotesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, quoteTexts);
+
+        Author auth = new Author("Foo", "McBar");
+        Publication pub = new Publication("Pub 1", "http://google.com", auth);
+        ArrayList<Quote> quotes = new ArrayList<>();
+        quotes.add(new Quote("Text 1", pub));
+        quotes.add(new Quote("Text 2", pub));
+        quotes.add(new Quote("Text 3", pub));
+        ArrayAdapter<Quote> quotesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, quotes);
 
         ListView listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(quotesAdapter);
