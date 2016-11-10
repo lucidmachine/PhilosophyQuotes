@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         quotes.add(new Quote("Text 1", pub));
         quotes.add(new Quote("Text 2", pub));
         quotes.add(new Quote("Text 3", pub));
-        ArrayAdapter<Quote> quotesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, quotes);
+
+        QuotesAdapter quotesAdapter = new QuotesAdapter(this, quotes);
 
         ListView listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(quotesAdapter);
