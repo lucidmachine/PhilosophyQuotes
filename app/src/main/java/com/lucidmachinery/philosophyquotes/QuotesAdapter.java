@@ -1,6 +1,8 @@
 package com.lucidmachinery.philosophyquotes;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +31,7 @@ class QuotesAdapter extends ArrayAdapter<Quote> {
      * @return The View into which we loaded the Quote.
      */
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public @NonNull View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         // Get view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.quote, parent, false);
