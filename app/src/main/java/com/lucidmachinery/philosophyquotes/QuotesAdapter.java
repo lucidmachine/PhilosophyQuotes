@@ -43,8 +43,8 @@ class QuotesAdapter extends ArrayAdapter<Quote> {
         Quote quote = getItem(position);
 
         // Put data in view
-        tvQuoteAuthor.setText(quote.getPublication().getAuthor().toString());
-        tvQuoteText.setText(quote.getText());
+        tvQuoteAuthor.setText(quote != null ? quote.getPublication().getAuthor().toString() : "");
+        tvQuoteText.setText(quote != null ? quote.getText() : "");
 
         return convertView;
     }

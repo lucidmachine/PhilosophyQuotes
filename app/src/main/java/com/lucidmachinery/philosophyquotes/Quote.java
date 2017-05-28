@@ -1,21 +1,23 @@
 package com.lucidmachinery.philosophyquotes;
 
+import android.support.annotation.NonNull;
+
 /**
  * A quote.
  * @author lucidmachine
  */
 class Quote {
     /** The full body text of the quote. */
-    private final String text;
+    private final @NonNull String text;
 
     /** The publication from which the quote is taken. */
-    private Publication publication;
+    private @NonNull Publication publication;
 
     /**
      * @param text The full body text of the quote.
      * @param publication The publication from which the quote is taken.
      */
-    public Quote(String text, Publication publication) {
+    public Quote(@NonNull String text, @NonNull Publication publication) {
         this.text = text;
         this.publication = publication;
     }
@@ -23,24 +25,22 @@ class Quote {
     /**
      * @return The full body text of the quote.
      */
-    public String getText() {
+    public @NonNull String getText() {
         return text;
     }
 
     /**
      * @return The Publication from which the quote is taken.
      */
-    Publication getPublication() {
+    @NonNull Publication getPublication() {
         return publication;
     }
 
     /**
      * @param publication The Publication from which the quote is taken.
      */
-    public void setPublication(Publication publication) {
-        if (this.publication != null) {
-            this.publication.removeQuote(this);
-        }
+    public void setPublication(@NonNull Publication publication) {
+        this.publication.removeQuote(this);
         this.publication = publication;
         this.publication.addQuote(this);
     }
