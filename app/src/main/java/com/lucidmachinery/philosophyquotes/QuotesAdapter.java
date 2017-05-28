@@ -12,12 +12,12 @@ import java.util.ArrayList;
 /**
  * Adapter to place Quote data into a View.
  */
-public class QuotesAdapter extends ArrayAdapter<Quote> {
+class QuotesAdapter extends ArrayAdapter<Quote> {
     /**
      * @param context The current context.
      * @param quotes A list of quotes to be placed into the View.
      */
-    public QuotesAdapter(Context context, ArrayList<Quote> quotes) {
+    QuotesAdapter(Context context, ArrayList<Quote> quotes) {
         super(context, 0, quotes);
     }
 

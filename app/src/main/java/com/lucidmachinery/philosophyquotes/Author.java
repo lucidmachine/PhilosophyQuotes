@@ -7,7 +7,7 @@ import java.util.List;
  * The author of a publication.
  * @author lucidmachine
  */
-public class Author {
+class Author {
     /** The first name of the author. */
     private String firstName;
 
@@ -21,7 +21,7 @@ public class Author {
      * @param firstName The first name of the author.
      * @param lastName The last name of the author.
      */
-    public Author(String firstName, String lastName) {
+    Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.publications = new ArrayList<>();
@@ -30,14 +30,14 @@ public class Author {
     /**
      * @return The first name of the author.
      */
-    public String getFirstName() {
+    String getFirstName() {
         return firstName;
     }
 
     /**
      * @return The last name of the author.
      */
-    public String getLastName() {
+    String getLastName() {
         return lastName;
     }
 
@@ -52,7 +52,7 @@ public class Author {
      * Adds a publication to the list of publications published by the author.
      * @param publication A publication published by the author.
      */
-    public void addPublication(Publication publication) {
+    void addPublication(Publication publication) {
         this.publications.add(publication);
     }
 
@@ -60,7 +60,7 @@ public class Author {
      * Removes a publication from the list of publications published by the author.
      * @param publication A publication not published by the author.
      */
-    public void removePublication(Publication publication) {
+    void removePublication(Publication publication) {
         this.publications.remove(publication);
     }
 

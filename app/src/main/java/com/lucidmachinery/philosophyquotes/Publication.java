@@ -7,7 +7,7 @@ import java.util.List;
  * A publication in which a quote appears.
  * @author lucidmachine
  */
-public class Publication {
+class Publication {
     /** The title of the publication. */
     private String title;
 
@@ -26,7 +26,7 @@ public class Publication {
      * @param link The affiliate link to the publication.
      * @param author The author of the publication.
      */
-    public Publication(String title, String link, Author author) {
+    Publication(String title, String link, Author author) {
         this.title = title;
         this.link = link;
         this.author = author;
@@ -36,7 +36,7 @@ public class Publication {
     /**
      * @return link The affiliate link to the publication.
      */
-    public String getLink() {
+    String getLink() {
         return link;
     }
 
@@ -50,7 +50,7 @@ public class Publication {
     /**
      * @return The author of the publication.
      */
-    public Author getAuthor() {
+    Author getAuthor() {
         return this.author;
     }
 
@@ -75,14 +75,14 @@ public class Publication {
     /**
      * @param quote A quote to be added to the list of quotes in this publication.
      */
-    public void addQuote(Quote quote) {
+    void addQuote(Quote quote) {
         this.quotes.add(quote);
     }
 
     /**
      * @param quote A quote to be removed from the list of quotes in this publication.
      */
-    public void removeQuote(Quote quote) {
+    void removeQuote(Quote quote) {
         this.quotes.remove(quote);
     }
 

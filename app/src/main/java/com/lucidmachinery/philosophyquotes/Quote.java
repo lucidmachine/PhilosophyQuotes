@@ -4,7 +4,7 @@ package com.lucidmachinery.philosophyquotes;
  * A quote.
  * @author lucidmachine
  */
-public class Quote {
+class Quote {
     /** The full body text of the quote. */
     private String text;
 
@@ -30,7 +30,7 @@ public class Quote {
     /**
      * @return The Publication from which the quote is taken.
      */
-    public Publication getPublication() {
+    Publication getPublication() {
         return publication;
     }
 
