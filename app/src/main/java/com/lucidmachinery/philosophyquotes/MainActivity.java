@@ -20,15 +20,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-        Author auth = new Author("Foo", "McBar");
-        Publication pub = new Publication("Pub 1", "http://google.com", auth);
-        ArrayList<Quote> quotes = new ArrayList<>();
-        quotes.add(new Quote("Text 1", pub));
-        quotes.add(new Quote("Text 2", pub));
-        quotes.add(new Quote("Text 3", pub));
-
-        QuotesAdapter quotesAdapter = new QuotesAdapter(this, quotes);
+        QuotesAdapter quotesAdapter = new QuotesAdapter(this, getQuotes());
 
         ListView listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(quotesAdapter);
@@ -54,5 +46,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private ArrayList<Quote> getQuotes () {
+        return getDummyQuotes();
+    }
+
+    private ArrayList<Quote> getDummyQuotes() {
+        Author auth = new Author("Foo", "McBar");
+        Author auth2 = new Author("Baz", "Bashington");
+        Publication pub = new Publication("Pub 1", "http://google.com", auth);
+        Publication pub2 = new Publication("Pub 2", "http://example.com", auth2);
+        ArrayList<Quote> quotes = new ArrayList<>();
+
+        for (int i = 1; i <= 15; i++) {
+            quotes.add(new Quote("Text "+i, i % 2 == 0 ? pub : pub2));
+        }
+
+        return quotes;
     }
 }
