@@ -9,10 +9,10 @@ import java.util.List;
  */
 class Author {
     /** The first name of the author. */
-    private String firstName;
+    private final String firstName;
 
     /** The last name of the author. */
-    private String lastName;
+    private final String lastName;
 
     /** A list of publications published by the author. */
     private List<Publication> publications;

@@ -6,7 +6,7 @@ package com.lucidmachinery.philosophyquotes;
  */
 class Quote {
     /** The full body text of the quote. */
-    private String text;
+    private final String text;
 
     /** The publication from which the quote is taken. */
     private Publication publication;

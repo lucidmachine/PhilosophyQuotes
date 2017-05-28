@@ -9,10 +9,10 @@ import java.util.List;
  */
 class Publication {
     /** The title of the publication. */
-    private String title;
+    private final String title;
 
     /** The affiliate link to the publication. */
-    private String link;
+    private final String link;
 
     /** The author of the publication. */
     private Author author;
