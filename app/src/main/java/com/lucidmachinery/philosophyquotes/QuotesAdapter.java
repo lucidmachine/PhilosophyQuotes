@@ -32,7 +32,7 @@ class QuotesAdapter extends ArrayAdapter<Quote> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.widget, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.quote, parent, false);
         }
         TextView tvQuoteAuthor = (TextView) convertView.findViewById(R.id.quote_author);
         TextView tvQuoteText = (TextView) convertView.findViewById(R.id.quote_text);
