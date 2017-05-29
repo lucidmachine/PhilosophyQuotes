@@ -1,5 +1,7 @@
 package com.lucidmachinery.philosophyquotes;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import java.util.List;
  * A publication in which a quote appears.
  * @author lucidmachine
  */
+@IgnoreExtraProperties
 class Publication {
     /** The title of the publication. */
     private final String title;

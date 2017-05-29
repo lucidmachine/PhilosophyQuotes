@@ -2,10 +2,13 @@ package com.lucidmachinery.philosophyquotes;
 
 import android.support.annotation.NonNull;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  * A quote.
  * @author lucidmachine
  */
+@IgnoreExtraProperties
 class Quote {
     /** The full body text of the quote. */
     private final @NonNull String text;

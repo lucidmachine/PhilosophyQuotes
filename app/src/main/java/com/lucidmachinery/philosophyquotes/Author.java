@@ -1,5 +1,7 @@
 package com.lucidmachinery.philosophyquotes;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import java.util.List;
  * The author of a publication.
  * @author lucidmachine
  */
+@IgnoreExtraProperties
 class Author {
     /** The first name of the author. */
     private final String firstName;
