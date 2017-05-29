@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import com.lucidmachinery.philosophyquotes.models.Quote;
+
 /**
  * Adapter to place Quote data into a View.
  */
@@ -43,8 +45,8 @@ class QuotesAdapter extends ArrayAdapter<Quote> {
         Quote quote = getItem(position);
 
         // Put data in view
-        tvQuoteAuthor.setText(quote != null ? quote.getPublication().getAuthor().toString() : "");
-        tvQuoteText.setText(quote != null ? quote.getText() : "");
+        tvQuoteAuthor.setText(quote != null ? quote.authorName != null ? quote.authorName: "" : "");
+        tvQuoteText.setText(quote != null ? quote.text != null ? quote.text : "" : "");
 
         return convertView;
     }

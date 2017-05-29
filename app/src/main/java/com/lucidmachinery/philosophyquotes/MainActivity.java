@@ -3,27 +3,69 @@ package com.lucidmachinery.philosophyquotes;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
+import com.lucidmachinery.philosophyquotes.models.Quote;
+
 public class MainActivity extends AppCompatActivity {
+
+    private ArrayList<Quote> mQuotes = new ArrayList<>();
+    private DatabaseReference mQuotesReference;
+    private ValueEventListener mQuotesListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Load layout
         setContentView(R.layout.activity_main);
 
+        // Add toolbar to top
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        QuotesAdapter quotesAdapter = new QuotesAdapter(this, getQuotes());
-
+        // Add quotes data to main content list view
+        QuotesAdapter quotesAdapter = new QuotesAdapter(this, mQuotes);
         ListView listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(quotesAdapter);
+
+        // Add Firebase quotes DB listener and event handlers
+        mQuotesReference = FirebaseDatabase.getInstance().getReference("quotes");
+        mQuotesListener = new ValueEventListener() {
+
+            /**
+             * Update the list of Quotes in the view when the Firebase quotes change.
+             * @param dataSnapshot Changed quote data.
+             */
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snap : dataSnapshot.getChildren()) {
+                    Quote quote = snap.getValue(Quote.class);
+                    mQuotes.add(quote);
+                }
+            }
+
+            /**
+             * Log Firebase DB error.
+             * @param databaseError Firebase DB error.
+             */
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("AppCompatActivity", "loadQuote:onCancelled", databaseError.toException());
+            }
+        };
+        mQuotesReference.addValueEventListener(mQuotesListener);
     }
 
     @Override
@@ -48,21 +90,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private ArrayList<Quote> getQuotes () {
-        return getDummyQuotes();
-    }
-
-    private ArrayList<Quote> getDummyQuotes() {
-        Author auth = new Author("Foo", "McBar");
-        Author auth2 = new Author("Baz", "Bashington");
-        Publication pub = new Publication("Pub 1", "http://google.com", auth);
-        Publication pub2 = new Publication("Pub 2", "http://example.com", auth2);
-        ArrayList<Quote> quotes = new ArrayList<>();
-
-        for (int i = 1; i <= 15; i++) {
-            quotes.add(new Quote("Text "+i, i % 2 == 0 ? pub : pub2));
-        }
-
-        return quotes;
-    }
 }
