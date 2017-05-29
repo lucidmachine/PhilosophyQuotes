@@ -21,8 +21,6 @@ import com.lucidmachinery.philosophyquotes.models.Quote;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Quote> mQuotes = new ArrayList<>();
-    private DatabaseReference mQuotesReference;
-    private ValueEventListener mQuotesListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(quotesAdapter);
 
         // Add Firebase quotes DB listener and event handlers
-        mQuotesReference = FirebaseDatabase.getInstance().getReference("quotes");
-        mQuotesListener = new ValueEventListener() {
+        DatabaseReference quotesReference = FirebaseDatabase.getInstance().getReference("quotes");
+        ValueEventListener quotesListener = new ValueEventListener() {
 
             /**
              * Update the list of Quotes in the view when the Firebase quotes change.
@@ -65,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.w("AppCompatActivity", "loadQuote:onCancelled", databaseError.toException());
             }
         };
-        mQuotesReference.addValueEventListener(mQuotesListener);
+        quotesReference.addValueEventListener(quotesListener);
     }
 
     @Override
