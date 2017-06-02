@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Add quotes data to main content list view
-        QuotesAdapter quotesAdapter = new QuotesAdapter(this, mQuotes);
+        final QuotesAdapter quotesAdapter = new QuotesAdapter(this, mQuotes);
         ListView listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(quotesAdapter);
 
@@ -48,10 +48,14 @@ public class MainActivity extends AppCompatActivity {
              */
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                mQuotes.clear();
+
                 for (DataSnapshot snap : dataSnapshot.getChildren()) {
                     Quote quote = snap.getValue(Quote.class);
                     mQuotes.add(quote);
                 }
+
+                quotesAdapter.notifyDataSetChanged();
             }
 
             /**
