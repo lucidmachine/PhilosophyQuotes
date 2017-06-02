@@ -5,6 +5,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Quote {
     public String authorName;
+    public String date;
     public String publicationLink;
     public String publicationTitle;
     public String text;

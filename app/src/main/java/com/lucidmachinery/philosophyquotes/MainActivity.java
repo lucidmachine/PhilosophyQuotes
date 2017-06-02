@@ -10,19 +10,23 @@ import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Locale;
 
 import com.lucidmachinery.philosophyquotes.models.Quote;
 
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Quote> mQuotes = new ArrayList<>();
-    private static final int MAX_RESULTS = 5;
+    private static final int MAX_RESULTS = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +44,22 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView)findViewById(R.id.listView);
         listView.setAdapter(quotesAdapter);
 
-        // Add Firebase quotes DB listener and event handlers
+        // Query Firebase quotes DB
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        Date today = cal.getTime();
+        String todayStr = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).
+                format(today);
         Query quotesQuery = FirebaseDatabase.getInstance()
                 .getReference("quotes")
+                .orderByChild("date")
+                .endAt(todayStr)
                 .limitToLast(MAX_RESULTS);
+
+        // Listen for Quotes updates
         ValueEventListener quotesListener = new ValueEventListener() {
 
             /**
@@ -58,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                     Quote quote = snap.getValue(Quote.class);
                     mQuotes.add(quote);
                 }
+                Collections.reverse(mQuotes);
 
                 quotesAdapter.notifyDataSetChanged();
             }
