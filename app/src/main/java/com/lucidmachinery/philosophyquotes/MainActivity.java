@@ -12,6 +12,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import com.lucidmachinery.philosophyquotes.models.Quote;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Quote> mQuotes = new ArrayList<>();
+    private static final int MAX_RESULTS = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(quotesAdapter);
 
         // Add Firebase quotes DB listener and event handlers
-        DatabaseReference quotesReference = FirebaseDatabase.getInstance().getReference("quotes");
+        Query quotesQuery = FirebaseDatabase.getInstance()
+                .getReference("quotes")
+                .limitToLast(MAX_RESULTS);
         ValueEventListener quotesListener = new ValueEventListener() {
 
             /**
@@ -67,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.w("AppCompatActivity", "loadQuote:onCancelled", databaseError.toException());
             }
         };
-        quotesReference.addValueEventListener(quotesListener);
+        quotesQuery.addValueEventListener(quotesListener);
     }
 
     @Override
