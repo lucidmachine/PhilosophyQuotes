@@ -18,4 +18,9 @@ public class Quote {
         this.publicationTitle = publicationTitle;
         this.text = text;
     }
+
+    @Override
+    public String toString() {
+        return String.format("\"%s\" - %s, \"%s\"", text, authorName, publicationTitle);
+    }
 }
