@@ -47,6 +47,7 @@ class QuotesAdapter extends ArrayAdapter<Quote> {
         TextView tvQuoteAuthor = (TextView) convertView.findViewById(R.id.quote_author);
         TextView tvQuoteText = (TextView) convertView.findViewById(R.id.quote_text);
         ImageView publicationButtonView = (ImageView) convertView.findViewById(R.id.source_button);
+        ImageView shareButtonView = (ImageView) convertView.findViewById(R.id.share_button);
 
         // Get data
         final Quote quote = getItem(position);
@@ -54,6 +55,8 @@ class QuotesAdapter extends ArrayAdapter<Quote> {
         // Put data in view
         tvQuoteAuthor.setText(quote != null ? quote.authorName != null ? quote.authorName: "" : "");
         tvQuoteText.setText(quote != null ? quote.text != null ? quote.text : "" : "");
+
+        // Wire up event handlers
         publicationButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +67,19 @@ class QuotesAdapter extends ArrayAdapter<Quote> {
                     intent.setAction(Intent.ACTION_VIEW);
                     intent.addCategory(Intent.CATEGORY_BROWSABLE);
                     intent.setData(Uri.parse(quote.publicationLink));
+                    finalConvertView.getContext().startActivity(intent);
+                }
+            }
+        });
+        shareButtonView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (quote != null) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_SEND);
+                    intent.putExtra(Intent.EXTRA_TEXT, quote.toString());
+                    intent.setType("text/plain");
                     finalConvertView.getContext().startActivity(intent);
                 }
             }
